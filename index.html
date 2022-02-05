@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    	<meta charset="UTF-8">
+	<title>Slot</title>
+    	<link rel='stylesheet' href='https://rawgit.com/imNicoSuarez/qiot-fonts/master/style.css'>
+    	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,900,700'>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	  
+
+	<script src="main.js"></script>
+
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
+    	<script src="https://kit.fontawesome.com/0a92abe1a6.js" crossorigin="anonymous"></script>
+</head>
+<body >	
+	<div id="slot_container">
+		<div id="slot">
+			<div class="column_container">
+				<div class="column_background"></div>
+				<div scroll="no" id="column1" class="column"></div>
+			</div>
+			<div class="column_container">
+				<div class="column_background"></div>
+				<div id="column2" class="column"></div>
+			</div>
+			<div class="column_container">
+				<div class="column_background"></div>
+				<div id="column3" class="column"></div>
+			</div>
+			<div class="column_container">
+				<div class="column_background"></div>
+				<div id="column4" class="column"></div>
+			</div>
+			<div class="column_container">
+				<div class="column_background"></div>
+				<div id="column5" class="column"></div>
+			</div>
+			<div class="column_container">
+				<div class="column_background"></div>
+				<div id="column6" class="column"></div>
+			</div>
+	
+		</div>
+		<div id="slot_components_design">
+			<div id="slot_components_container">
+
+				<div id="options_and_info_container">
+				</div>
+				<div id="credit_bet_container">
+					<div class="half_container">
+						<div class="credit_bet_text">
+							<div class="value_description"><p>CREDIT: </p></div>
+						</div>
+						<div class="credit_bet_text">
+							<div class="value_container"><p id="credit" class="value">€100000,00</p></div>
+						</div>
+					</div>
+					<div class="half_container">
+						<div class="credit_bet_text">
+							<div class="value_description" style="margin-top: 0;"><p>BET: </p></div>
+						</div>
+						<div class="credit_bet_text">
+							<div class="value_container" style="margin-top: 0;"><p id="bet" class="value">€1</p></div>
+						</div>
+					</div>
+				</div>
+				<div id="won_container">
+					<div class="half_container">
+						<div class="spin_win_container">
+							<h3 id="spin_win">Spin to win</h3>
+						</div>
+					</div>
+					<div class="half_container">
+						<div id="bonus_win_container">
+							<h4 id="bonus_win">Total win: €5</h4>
+						</div>
+					</div>
+				</div>
+				<div id="spin_container">
+					
+				</div>
+
+			</div>
+		</div>
+		<div id="sound_image_container"><img src="IMAGES/sound.png" class="red_pointer" id="sound_image" draggable="false" onclick="open_sound_bar()"></div>
+		
+		<div id="sound_bar_container" style="display:none;">
+			<img id="sound" src="IMAGES/sound.png" class="sound_bar_image" style="height: 70%; top:15%;" onclick="change_volume(0);">
+			<img id="no_sound" src="IMAGES/no_sound.png" class="sound_bar_image" style="display: none; height: 80%; top: 10%;" onclick="change_volume(last_volume);">
+			<input type="range" id="sound_bar" class="sound_bar original_sound_bar horizontal_sound_bar" max="100" value="100" oninput="update_volume(this.value); ">
+			<input type="range" id="shadow_sound_bar" class="sound_bar shadow_sound_bar horizontal_sound_bar" max="100" value="100">
+			<div id="horizontal_sound_bar_value" class="sound_bar_value">100</div>
+		</div>
+		<div id="info_image_container"><img src="IMAGES/info.png" class="red_pointer" id="info_image" draggable="false" onclick="open_info()"></div>
+		<div id="info">
+			<div id="logo_image_container"><img id="logo_image" src="IMAGES/logo-icon.png" ></div>
+			<div id="symbol_pay_page" class="page">
+
+				<div class="information_container">
+					<div class="horizontal_half">
+						<div id="high_pay_symbols_container">
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/scrapbeak.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value9_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value9_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value9_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value9_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/assassin.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value8_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value8_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value8_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value8_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/meathead.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value7_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value7_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value7_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value7_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image more_brightness" src="IMAGES/spider.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value6_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value6_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value6_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value6_3">3 - €10</p></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="horizontal_half">
+						<div id="low_pay_symbols_container">
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/prodigal.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value5_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value5_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value5_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value5_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/kayn.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value4_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value4_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value4_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value4_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/lolita.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value3_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value3_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value3_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value3_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image" src="IMAGES/immolator.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value2_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value2_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value2_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value2_3">3 - €10</p></div>
+								</div>
+							</div>
+							<div class="info_symbol_container">
+								<div class="info_symbol_image_container">
+									<img class="info_symbol_image more_brightness" src="IMAGES/hive.png">
+								</div>
+								<div class="info_symbol_values_container">
+									<div class="info_value_row"><p id ="value1_6">6 - €100</p></div>
+									<div class="info_value_row"><p id ="value1_5">5 - €50</p></div>
+									<div class="info_value_row"><p id ="value1_4">4 - €25</p></div>
+									<div class="info_value_row"><p id ="value1_3">3 - €10</p></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="info_arrows">
+					<img id="info_arrow_right" class="info_arrow_image" src="IMAGES/right-arrow.png" onclick="$(document.getElementById('symbol_pay_page')).css('display','none');$(document.getElementById('bonus_page')).css('display','block');select_image();">
+				</div>
+				
+				
+			</div>
+			<div id="bonus_page" class="page" style="display: none;" >
+				<div class="information_container">
+					
+				</div>
+				<div id="info_arrows">
+					<img id="info_arrow_left" class="info_arrow_image" src="IMAGES/left-arrow.png" onclick="$(document.getElementById('bonus_page')).css('display','none');$(document.getElementById('symbol_pay_page')).css('display','block'); select_image();">
+					
+					<img id="info_arrow_right" class="info_arrow_image" src="IMAGES/right-arrow.png" onclick="$(document.getElementById('bonus_page')).css('display','none');$(document.getElementById('music_page')).css('display','block'); select_image();">
+				</div>
+			</div>
+			<div id="music_page" class="page" style="display: none;" >
+				<div class="information_container">
+					<div id="music_container">
+						<div id="vertical_sound_bar_container">
+							<input type="range" class="sound_bar original_sound_bar vertical_sound_bar" max="100" value="100" oninput="update_volume(this.value); ">
+							<input type="range" class="sound_bar shadow_sound_bar vertical_sound_bar" max="100" value="100">
+							<div id="vertical_sound_bar_value_container">
+								<div id="vertical_sound_bar_value" class="sound_bar_value">100</div>
+							</div>
+							<img id="loop_image" class="not_selected" src="IMAGES/loop.png" onclick="change_loop(this);">
+						</div>
+						<div id="music_list_container">
+							<div class="music_entry">
+								<div class="play_container">
+									<div id="audio_1_play"><img class="play_image" src="IMAGES/play.png" onclick="play_music(1,false)"></div>
+									<div id="audio_1_pause" style="display: none;"><img class="play_image" src="IMAGES/pause.png" onclick="stop_music(1)"></div>
+								</div>
+								<div class="music_name_container"><span>Sinners Blues</span></div>
+							</div>
+							<div class="music_entry">
+								<div class="play_container">
+									<div id="audio_2_play"><img class="play_image" src="IMAGES/play.png" onclick="play_music(2,false)"></div>
+									<div id="audio_2_pause" style="display: none;"><img class="play_image" src="IMAGES/pause.png" onclick="stop_music(2)"></div>
+								</div>
+								<div class="music_name_container"><span>Devil in the Churchyard</span></div>
+							</div>
+							<div class="music_entry">
+								<div class="play_container">
+									<div id="audio_3_play"><img class="play_image" src="IMAGES/play.png" onclick="play_music(3,false)"></div>
+									<div id="audio_3_pause" style="display: none;"><img class="play_image" src="IMAGES/pause.png" onclick="stop_music(3)"></div>
+								</div>
+								<div class="music_name_container"><span>End Will Come</span></div>
+							</div>
+							<div class="music_entry">
+								<div class="play_container">
+									<div id="audio_4_play"><img class="play_image" src="IMAGES/play.png" onclick="play_music(4,false)"></div>
+									<div id="audio_4_pause" style="display: none;"><img class="play_image" src="IMAGES/pause.png" onclick="stop_music(4)"></div>
+								</div>
+								<div class="music_name_container"><span>Rise up Dead Man</span></div>
+							</div>
+							<div class="music_entry">
+								<div class="play_container">
+									<div id="audio_5_play"><img class="play_image" src="IMAGES/play.png" onclick="play_music(5,false)"></div>
+									<div id="audio_5_pause" style="display: none;"><img class="play_image" src="IMAGES/pause.png" onclick="stop_music(5)"></div>
+								</div>
+								<div class="music_name_container"><span>Poison Curse</span></div>
+							</div>
+							<div class="music_entry">
+								<div class="play_container">
+									<div id="audio_6_play"><img class="play_image" src="IMAGES/play.png" onclick="play_music(6,false)"></div>
+									<div id="audio_6_pause" style="display: none;"><img class="play_image" src="IMAGES/pause.png" onclick="stop_music(6)"></div>
+								</div>
+								<div class="music_name_container"><span>Bullets_Lullaby</span></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div id="info_arrows">
+					<img id="info_arrow_left" class="info_arrow_image" src="IMAGES/left-arrow.png"  onclick="$(document.getElementById('music_page')).css('display','none');$(document.getElementById('bonus_page')).css('display','block'); select_image();">
+				</div>
+			</div>
+			<img id="close_info_cross" src="IMAGES/close.png" onclick="close_info();select_image();">
+		</div>
+		<div id="spin_buttons">
+			<div id="minus_button_container" class="bet_button bet_button_clicked" onclick="change_coin(-1, this)">
+				<div id="minus_button" class="clickable">
+					<div class="sign_background"></div>
+					<div class="sign"><h1>-</h1></div>
+					
+				</div>
+			</div>
+			<div id="spin_button_container">
+				<div id="spin_button" class="clickable" onclick="try_to_spin()">
+					<div class="sign_background"></div>
+					<img class="arrow_sign" src="IMAGES/arrows.png" draggable="false">
+				</div>
+			</div>
+			<div id="plus_button_container" class="bet_button bet_button_clicked" onclick="change_coin(1, this)">
+				<div id="plus_button" class="clickable">
+					<div class="sign_background"></div>
+					<div class="sign"><h2>+</h2></div>
+				</div>
+			</div>
+			<div id="automatic_spins_container">
+				<div id="automatic_spins" class="automatic_spins_off" onclick="automatic_play()">
+					<div>
+						<p>Auto Spin</p>
+					</div>
+				</div>
+				
+				
+			</div>
+			<div id="hyper_spin_container" class="normal_spin" onclick="hyper_spin(this);">
+				<div><img id="hyper_spin" src="IMAGES/lightning.png"></div>
+				
+			</div>
+			
+		</div>
+		<div id="enter_bonus" class="bonus_info not_show">
+			<div>
+				<h2 >Congratulations!</h2>
+			</div>
+			<div>
+				<h2>You won 5 free spins!</h2>
+			</div>
+
+			<div id="click_anywhere">
+				<h3>Click anywhere to start</h3>
+			</div>
+		</div>
+		<div id="spin_indicator" class="not_showing_spin_indicator">
+			
+			<div class="bonus_background"></div>
+			<div class="bonus_text_container">
+				<h2 id="spin_count" class="bonus_text"> 1 / 5 SPINS</h2>
+			</div>
+
+		</div>
+		<div id="multiplier_indicator" class="not_showing_multiplier_indicator">
+			<div class="bonus_background"></div>
+			<div class="bonus_text_container">
+				<h1 id="multiplier" class="bonus_text"> 1 X</h1>
+			</div>
+			
+		</div>
+		<div id="leave_bonus" class="bonus_info not_show">
+			<div>
+				<h2 >Congratulations!</h2>
+			</div>
+			<div>
+				<h2 id="won_in_bonus">You won €0!</h2>
+			</div>
+			<div id="click_anywhere">
+				<h3>Click anywhere to close</h3>
+			</div>
+		</div>
+	</div>
+	
+	<canvas id="canvas"></canvas>
+	<audio id ="audio0" data-audio-number="0" src="Sounds/Rise_up_Dead_Man_(Instrumental).mp3" loop>
+	</audio>
+	<audio id ="audio1" data-audio-number="1" src="Sounds/Sinners_Blues.mp3" onended="setTimeout(play_music(2, false),3000)">
+	</audio>
+	<audio id ="audio2" data-audio-number="2" src="Sounds/Devil_in_the_Churchyard.mp3" onended="setTimeout(play_music(3, false),3000)">
+	</audio>
+	<audio id ="audio3" data-audio-number="3"  src="Sounds/End_Will_Come.mp3" onended="setTimeout(play_music(4, false),3000)">
+	</audio>
+	<audio id ="audio4" data-audio-number="4" src="Sounds/Rise_up_Dead_Man.mp3" onended="setTimeout(play_music(5, false),3000)">
+	</audio>
+	<audio id ="audio5" data-audio-number="5" src="Sounds/Poison_Curse.mp3" onended="setTimeout(play_music(6, false),3000)">
+	</audio>
+	<audio id ="audio6" data-audio-number="6" src="Sounds/Bullets_Lullaby.mp3" onended="setTimeout(play_music(1, false),3000)">
+	</audio>
+</body>
+</html>
+
+

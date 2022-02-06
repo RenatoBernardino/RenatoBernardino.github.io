@@ -1402,17 +1402,17 @@ function stop_automatic_play() {
 }
 
 
-
-function close_info() {
-  var info = document.getElementById("info");
-  $(info).css("display", "none");
-  
-}
-
 function open_info(){
   var info = document.getElementById("info");
-  $(info).css("display", "block");
+  if(info.style.display === "block"){
+    $(info).css('display', 'none');
+  }
+  else{
+    $(info).css('display', 'block');
+  }
+  select_image();
 }
+
 
 function select_image(){
   var audio = new Audio('Sounds/select.wav');

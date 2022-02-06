@@ -1432,7 +1432,6 @@ function open_sound_bar() {
 
 function update_volume(value){
   last_volume = volume.valueOf();
-  volume = value;
   change_volume(value);
 }
 
@@ -1440,6 +1439,7 @@ function update_volume(value){
 function change_volume(value){
 
   volume_changed = true;
+  volume = value;
 
   $("div.sound_bar_value").html(value);
 

@@ -1,5 +1,5 @@
 :root{
-	
+    
     --me: min(1vw, 1vh);
     --row-number: 5;
     --column-number: 6;
@@ -855,15 +855,16 @@ body {
     margin: auto;
     text-align: center;
     position: relative;
-    top: 15%;
+    top: 20%;
 }
 #automatic_spins > div > p{
     color: white;
     margin: 0;
     font-weight: normal;
     text-transform: uppercase;
-    letter-spacing: 0.3rem;
-    font-size: 80%;
+    letter-spacing: calc(var(--square-size) * 0.045);
+    font-size: calc(var(--square-size) * 0.14);
+    line-height: 0.9; 
     font-family: 'GT-Sectra-Fine-Medium',serif;
 }
 

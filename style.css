@@ -1,5 +1,5 @@
 :root{
-    
+	
     --me: min(1vw, 1vh);
     --row-number: 5;
     --column-number: 6;
@@ -247,11 +247,13 @@ body {
     margin-left: auto;
     margin-right: auto;
     text-transform: uppercase;
+    font-size: calc(var(--square-size) * 0.3);
+    letter-spacing: calc(var(--square-size) * 0.03);
 }
 
 #click_anywhere{
     position: absolute;
-    bottom: 0;
+    bottom: 2.5%;
     width: 100%;
     
 }
@@ -260,6 +262,9 @@ body {
 #click_anywhere > h3{
     text-align: center;
     color: white;
+    font-size: calc(var(--square-size) * 0.2);
+    letter-spacing: calc(var(--square-size) * 0.02);
+    margin: 0;
 }
 .not_show{
     display: none;

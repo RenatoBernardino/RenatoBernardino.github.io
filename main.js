@@ -1112,6 +1112,7 @@ function endSpin(){
           highlight_scatters();
           setTimeout(() => {
             var audio = new Audio('Sounds/headshot.mp3');
+            audio.volume = volume / 100;
             audio.play();
           }, 200);
           

@@ -478,8 +478,6 @@ function highlight_scatters() {
 class Slot{
   constructor(slot){
 
-    this.slot = [];
-
     this.create_pos(slot);
     
     this.create_lines();
@@ -489,6 +487,7 @@ class Slot{
   }
 
   create_pos(slot){
+    this.slot = [];
     var rect = slot.getBoundingClientRect();
     console.log(rect.left);
     console.log(rect.top);
@@ -1354,7 +1353,7 @@ function end_bonus() {
 }
 
 window.onmousedown = function(event) {
-  printMousePosition(event);
+  //printMousePosition(event);
   if(entering_bonus && can_enter){
     entering_bonus = false;
     can_enter = false;
@@ -1376,6 +1375,9 @@ window.onmousedown = function(event) {
   }
 }
 
+window.onresize = function(event) {
+  slot = new Slot(document.getElementById("slot"));
+};
 
 
 function automatic_play() {

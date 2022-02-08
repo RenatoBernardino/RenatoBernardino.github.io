@@ -474,7 +474,8 @@ body {
     right: 0;
     width: 20%;
     height: 100%;
-    font-size: 90%;
+    font-size: calc(var(--square-size) * 0.16);
+    letter-spacing: calc(var(--square-size) * 0.02);
     margin: 0;
     display: flex;
     justify-content: center; /* align horizontal */
@@ -601,7 +602,7 @@ body {
 .info_value_row > p{
     color: white;
     margin: 0;
-    font-size: 70%;
+    font-size: calc(var(--square-size) * 0.12);
 
 }
 
@@ -641,6 +642,29 @@ body {
     filter: invert(38%) sepia(82%) saturate(6798%) hue-rotate(340deg) brightness(87%) contrast(92%);
 }
 
+#bonus_information_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#bonus_information_text_container{
+    width: 90%;
+    height: 80%;
+    margin: auto;
+}
+
+#bonus_information_text_container > p{
+    color: white;
+    font-size: calc(var(--square-size) * 0.15);
+    letter-spacing: calc(var(--square-size) * 0.025);
+    text-transform: uppercase;
+
+}
+#bonus_information_text_container > p > img{
+    height: calc(var(--square-size) * 0.3);
+    background-color: rgba(128, 128, 128, 0.6);
+}
 
 #music_container{
     height: 79%;
@@ -695,6 +719,8 @@ body {
     color: white;
     text-align: center;
     font-size: 150%;
+    font-size: calc(var(--square-size) * 0.23);
+    letter-spacing: calc(var(--square-size) * 0.02);
 }
 
 #loop_image{
@@ -716,11 +742,11 @@ body {
 
 #music_list_container{
     width: 60%;
-    margin-left: 5%;
+    margin-left: 4%;
 }
 
 .music_entry{
-    width: 90%;
+    width: 95%;
     height: 14%;
     margin-bottom: 3%;
     border: 1px solid #d7263d;
@@ -760,7 +786,8 @@ body {
     display: inline-block;
     vertical-align: middle;
     color: white;
-    font-size: 110%;
+    font-size: calc(var(--square-size) * 0.17);
+    letter-spacing: calc(var(--square-size) * 0.025);
 }
 
 
@@ -1111,7 +1138,7 @@ body {
     line-height: calc(var(--square-size) * 0.19);
 
     margin-bottom: calc(var(--square-size) * 0.2);
-    position: relative;
+    display: block;
 }
 #introduction_text_container > p > img{
     height: calc(var(--square-size) * 0.22);
@@ -1150,7 +1177,7 @@ a{
 }
 
 #hunt1{
-    height: 60%;
+    width: 45%;
     position: absolute;
     top: 20%;
     left: 0;
@@ -1160,7 +1187,7 @@ a{
 }
 
 #hunt2{
-    height: 60%;
+    width: 45%;
     position: absolute;
     top: 20%;
     right: 0;
@@ -1175,10 +1202,11 @@ a{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
     display: flex;
 }
 #leave_introducion_screen_container > p{
-    margin: auto;
+    margin-top: auto;
     margin-left: 0;
     color: white;
     font-family: 'GT-Sectra-Fine-Medium',serif;

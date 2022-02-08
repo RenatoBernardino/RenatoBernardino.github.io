@@ -34,7 +34,6 @@ var odds = [0.16, 0.15, 0.14, 0.13, 0.12, 0.09, 0.075, 0.065, 0.05, 0.02];
 //var images = ["10.jpg", "J.jpg", "Q.jpg", "K.jpg", "A.jpg", "P5.jpg", "P4.jpg", "P3.jpg", "P2.jpg", "P1.jpg", "Scatter.jpg"];
 var images = ["hive.png", "immolator.png", "lolita.png", "kayn.png", "prodigal.png", "spider.png", "meathead.png", "assassin.png", "scrapbeak.png", "bonus.png"];
 var symbol_number = odds.length; 
-console.log("symbol number = " + symbol_number);
 
 var credit = 100000;
 var coin_index = 4;
@@ -105,6 +104,12 @@ var line_5_symbols = [Dez_5, J_5, Q_5, K_5, As_5, P4_5, P3_5, P2_5, P1_5];
 var line_6_symbols = [Dez_6, J_6, Q_6, K_6, As_6, P4_6, P3_6, P2_6, P1_6];
 
 var scroll_animation_time = 2000; //1 sec
+
+
+function enter_slot(){
+  var element = document.getElementById("introductory_page");
+  $(element).css("display", "none");
+}
 
 function change_coin(c, element) {
   var tmp = coin_index + c;
@@ -489,12 +494,9 @@ class Slot{
   create_pos(slot){
     this.slot = [];
     var rect = slot.getBoundingClientRect();
-    console.log(rect.left);
-    console.log(rect.top);
     var height = rect.height;
     var width = rect.width;
     var border_size = parseInt($(slot).css("border-left-width"),10);
-    console.log(border_size);
     height -= border_size * 2;
     width -= border_size * 2;
 
@@ -502,7 +504,6 @@ class Slot{
     var row_height = height/(5 + shadow_frac*2);
 
     var left = rect.left + border_size + column_width / 2;
-    console.log(shadow_frac);
     var top = rect.top + border_size + row_height * (0.5 + shadow_frac);
 
     var canvas = document.getElementById("canvas");
@@ -545,7 +546,6 @@ class Slot{
     create_four_row_lines(this.slot, this.lines);
     create_five_row_lines(this.slot, this.lines);
 
-    console.log(this.lines);
 
     function create_straight_lines(slot, lines){
 

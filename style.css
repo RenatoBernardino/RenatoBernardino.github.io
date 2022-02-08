@@ -1,5 +1,5 @@
 :root{
-	
+    
     --me: min(1vw, 1vh);
     --row-number: 5;
     --column-number: 6;
@@ -1076,4 +1076,141 @@ body {
     color: white;
     margin: 0;
     font-size: calc(var(--square-size) * 0.177);
+}
+
+
+#introductory_page{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(12,16,19,0.9);
+    position: fixed;
+    z-index: 100;
+}
+
+#introduction_text_container{
+    padding-right: 2%;
+    padding-left: 2%;
+    width: 40%;
+    height: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-style: none solid none none;
+    border-color: #d7263d;
+    border-width: 1px;
+    box-sizing: border-box;
+}
+
+#introduction_text_container > p, #introduction_text_container > a{
+    color: white;
+    font-family: 'GT-Sectra-Fine-Medium',serif;
+    font-size: calc(var(--square-size) * 0.15);
+    font-size: 1.1vw;
+    text-transform: uppercase;
+    letter-spacing: calc(var(--square-size) * 0.03);
+    line-height: calc(var(--square-size) * 0.19);
+
+    margin-bottom: calc(var(--square-size) * 0.2);
+    position: relative;
+}
+#introduction_text_container > p > img{
+    height: calc(var(--square-size) * 0.22);
+    filter: invert(100%) sepia(4%) saturate(22%) hue-rotate(186deg) brightness(105%) contrast(100%);
+}
+a{
+    color: #d7263d;
+}
+
+#introduction_hunt_container{
+    height: 90%;
+    width: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+    box-sizing: border-box;
+    display: block;
+}
+
+#huntshowdown_image_container{
+    width: 100%;
+    height: 16.7%;
+    display: flex;
+}
+#huntshowdown_image{
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#game_images_container{
+    height: 40%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+#hunt1{
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    border-style: solid;
+    border-color: #d7263d;
+    border-width: 1px;
+}
+
+#hunt2{
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    filter: brightness(1.5);
+    border-style: solid;
+    border-color: #d7263d;
+    border-width: 1px;
+}
+
+#leave_introducion_screen_container{
+    height: 26.7%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+#leave_introducion_screen_container > p{
+    margin: auto;
+    margin-left: 0;
+    color: white;
+    font-family: 'GT-Sectra-Fine-Medium',serif;
+    font-size: calc(var(--square-size) * 0.15);
+    font-size: 1.1vw;
+    text-transform: uppercase;
+    letter-spacing: calc(var(--square-size) * 0.03);
+    line-height: calc(var(--square-size) * 0.19);
+    display: flex;
+    position: relative;
+}
+
+#enter_slot_image_container{
+    height: calc(var(--square-size) * 0.8);
+    width: calc(var(--square-size) * 0.8);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    position: relative;
+    top: calc(var(--square-size) * 0.35 * -1);
+    left: calc(var(--square-size) * 0.35);;
+    display: flex;
+    border-radius: 50%;
+}
+
+#enter_slot_image{
+    height: 75%;
+    filter: invert(100%) sepia(4%) saturate(22%) hue-rotate(186deg) brightness(105%) contrast(100%);
+    margin: auto;
+}
+
+#enter_slot_image_container:hover{
+    transform: scale(1.05);
+    cursor: pointer;
 }

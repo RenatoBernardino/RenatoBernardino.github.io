@@ -217,10 +217,60 @@
 			<div id="bonus_page" class="page" style="display: none;" >
 				<div class="information_container">
 					<div id="bonus_information_container">
-						<div id="bonus_information_text_container">
-							<p>Get 3 or more headshots <img src="IMAGES/bonus.png"> to enter the bonus!</p>
-							<p>Every time a spin pays €0, you get a re-spin and the multiplier is increased by 1. The multiplier starts at X1 for every free spin.</p>
+						<div id="bonus_information">
+							<div class="information_bonus_text_container">
+								<p class="information_bonus_text">Get 3 or more headshots  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span>  to enter the bonus!</p>
+							</div>
+							<div class="information_bonus_text_container">
+								<p class="information_bonus_text">Every time a spin pays €0, you get a re-spin and the multiplier is increased by 1. The multiplier starts at X1 for every free spin.</p>
+							</div>
+							<div class="effect_of_scatter_container" style="top: 6%;">
+								<div>
+									<div style="text-align: center;"><p class="information_bonus_text">Base Game</p></div>
+								</div>
+								<div>
+									<div style="text-align: center;"><p class="information_bonus_text">Bonus</p></div>
+								</div>
+							</div>
+							<div class="effect_of_scatter_container">
+								<div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">3  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - 4 Free Spins</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">4  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - 6 Free Spins</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">5  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - 8 Free Spins</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">6  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - 10 Free Spins</p>
+									</div>
+								</div>
+								<div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">1  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - +1 Multiplier</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">2  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - +2 Multiplier</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">3  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - +2 Free Spins</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">4  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - +4 Free Spins</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">5  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - +6 Free Spins</p>
+									</div>
+									<div class="information_bonus_text_container">
+										<p class="information_bonus_text">6  <span class="bonus_page_headshot_container"><img class="bonus_page_headshot" src="IMAGES/bonus.png"></span> - +8 Free Spins</p>
+									</div>
+								</div>  
+								<div></div>
+							</div>
 						</div>
+						
 					</div>
 				</div>
 				<div id="info_arrows">
@@ -297,7 +347,7 @@
 			<div id="minus_button_container" class="bet_button bet_button_clicked" onclick="change_coin(-1, this)">
 				<div id="minus_button" class="clickable">
 					<div class="sign_background"></div>
-					<div class="sign"><h1>-</h1></div>
+					<div class="sign"><p>-</p></div>
 					
 				</div>
 			</div>
@@ -310,7 +360,7 @@
 			<div id="plus_button_container" class="bet_button bet_button_clicked" onclick="change_coin(1, this)">
 				<div id="plus_button" class="clickable">
 					<div class="sign_background"></div>
-					<div class="sign"><h2>+</h2></div>
+					<div class="sign"><p>+</p></div>
 				</div>
 			</div>
 			<div id="automatic_spins_container">
@@ -333,7 +383,7 @@
 				<h2 >Congratulations!</h2>
 			</div>
 			<div>
-				<h2>You won 5 free spins!</h2>
+				<h2 id="you_won_spins">You won 5 free spins!</h2>
 			</div>
 
 			<div id="click_anywhere">
@@ -370,10 +420,10 @@
 	
 	<canvas id="canvas"></canvas>
 	<div id="introductory_page"> 
-		<div id="introduction_text_container"><p>Hi, my name is Renato Bernardino and I made this slot machine for fun as a personal project.</p>
+		<div id="introduction_text_container"><p>Hi, my name is Renato Bernardino, I have a Master in Computer Science and Engineering and I made this slot machine for fun as a personal project.</p>
 			<p>Even though I'm not a gambler, since I am aware that I will probably just lose money, I really enjoy the design and mathematical domains of slot machines.</p>
 			<p>This slot is based in a game I like called Hunt Showdown. All the images and musics are from the game, if you want to check it out you can go to the game page <a href="https://www.huntshowdown.com/">here.</a> </p>
-			<p>To know more information about the slot, press the <img src="IMAGES/info.png"> button located in the bottom left corner of the slot, where you can learn about how much a line pays for each symbol, how the bonus feature works and also listen to the game musics.</p>
+			<p>To know more information about the slot, press the <span><img src="IMAGES/info.png"></span> button located in the bottom left corner of the slot, where you can learn about how much a line pays for each symbol, how the bonus feature works and also listen to the game musics.</p>
 		</div>
 		<div id="introduction_hunt_container">
 			<div id="huntshowdown_image_container"><img id="huntshowdown_image" src="IMAGES/hunt_showdown.png" draggable="false"></div>

@@ -284,12 +284,12 @@ body {
 }
 
 #spin_indicator{
-    width: calc(var(--slot-width) / 6 * 1.5 + 7px);
-    height: calc(var(--slot-height) / 5 * 0.75);
+    width: calc(var(--square-size) * 1.5);
+    height: calc(var(--square-size) * 0.5);
 
     position: absolute;
-    left: calc(var(--slot-width) / 6 * 4 + 7px);
-    top: calc(var(--slot-height) / 5 * 0.75 * -1 );
+    left: calc(var(--square-size) * 4.25);
+    top: calc(var(--square-size) * 0.5 * -1);
     transform-origin: bottom;
     display: flex;
     border-radius: 25px 25px 0 0;
@@ -305,9 +305,9 @@ body {
     left: 0;
     top: 0;
 
-    background-image: url('IMAGES/wood-texture.jpg');
+    background-image: url('IMAGES/fundo.jpg');
     background-size: 100% 100%;
-    filter: brightness(50%);
+    filter: brightness(90%);
 }
 
 .not_showing_spin_indicator{
@@ -347,17 +347,19 @@ body {
 }
 
 #multiplier_indicator{
-    width: calc(var(--slot-width) / 6 * 1.2);
-    height: calc(var(--slot-height) / 5 * 2);
+    width: calc(var(--square-size) * 1);
+    height: calc(var(--square-size) * 2);
 
     position: absolute;
     left: 100%;
-    top: calc(var(--slot-height) / 5 + 7px);
+    top: calc(var(--square-size) * 1);
 
     transform-origin: left;
     display: flex;
     border-radius: 0 25px 25px 0;
     overflow: hidden;
+    z-index: -10;
+
 
 }
 
@@ -517,7 +519,7 @@ body {
 
     left: calc(var(--slot-width) * 0.05 + 3px); /* 3px is the width of a default border */
     top: calc(var(--slot-height) * 0.05 + 3px);
-    background: rgba(12,16,19,0.8);
+    background: rgba(12,16,19,0.85);
     z-index: 10;
     display: none;
     filter: brightness(1.1);
@@ -557,8 +559,8 @@ body {
     width: 70.56%;
     height: 80%;
     display: grid;
-    grid-template-columns: 17.35% 17.35% 17.35% 17.35%;
-    column-gap: 10.2%;
+    grid-template-columns: 18% 18% 18% 18%;
+    column-gap: 9.333%;
 }
 
 #low_pay_symbols_container{
@@ -568,8 +570,8 @@ body {
     width: 90%;
     height: 80%;
     display: grid;
-    grid-template-columns: 13.6% 13.6% 13.6% 13.6% 13.6%;
-    column-gap: 8%;
+    grid-template-columns: 14.11% 14.11% 14.11% 14.11% 14.11%;
+    column-gap: 7.3625%;
 }
 .info_symbol_container{
     box-shadow: inset 0 0 25px 15px rgb(12 16 19 / 50%), inset 0 0 12px 1px rgb(12 16 19 / 50%), inset 0 0 0 1px rgb(255 255 255 / 70%);
@@ -602,7 +604,7 @@ body {
 .info_value_row > p{
     color: white;
     margin: 0;
-    font-size: calc(var(--square-size) * 0.12);
+    font-size: calc(var(--square-size) * 0.107);
 
 }
 
@@ -645,26 +647,68 @@ body {
 #bonus_information_container{
     width: 100%;
     height: 100%;
+    display: flex
+}
+
+#bonus_information{
+    width: 90%;
+    height: 97%;
+    margin: auto;
+    margin-bottom: 0;
+}
+.information_bonus_text_container{
+    margin-bottom: 7%;
+    text-align: left;
     display: flex;
 }
 
-#bonus_information_text_container{
-    width: 90%;
-    height: 80%;
-    margin: auto;
-}
-
-#bonus_information_text_container > p{
+.information_bonus_text{
+    margin: 0;
     color: white;
-    font-size: calc(var(--square-size) * 0.15);
-    letter-spacing: calc(var(--square-size) * 0.025);
+    font-size: calc(var(--square-size) * 0.13);
+    letter-spacing: calc(var(--square-size) * 0.04);
     text-transform: uppercase;
+    line-height: calc(var(--square-size) * 0.2);
+    height: calc(var(--square-size) * 0.2);
+    font-family: 'GT-Sectra-Fine-Medium',serif;
 
 }
-#bonus_information_text_container > p > img{
-    height: calc(var(--square-size) * 0.3);
+.bonus_page_headshot_container{
+    position: relative;
+    top: calc(var(--square-size) * 0.08);
+}
+.bonus_page_headshot{
+    height: 150%;
     background-color: rgba(128, 128, 128, 0.6);
 }
+
+.effect_of_scatter_container{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    position: relative;
+    top: 2%;
+
+}
+.effect_of_scatter_container > div > div{
+    margin-bottom: 5%;
+}
+.effect_of_scatter_container > div:first-child{
+    border-right: #d7263d;
+    border-style: none solid none none;
+    border-width: 1px;
+}
+
+.effect_of_scatter_container > div:nth-child(2){
+    margin-left: 10%;
+}
+
+
+
+
+
+
 
 #music_container{
     height: 79%;
@@ -1006,30 +1050,19 @@ body {
 }
 .sign{
     margin: auto;
-    color: white;
     z-index: 4;
-    text-align: center;
+    position: relative;
+    top: calc(var(--square-size) * 0.004 * -1);
+    left: calc(var(--square-size) * 0.0025 * -1);
 }
-.sign > h1{
+.sign > p{
     color: white;
     margin: 0;
-    line-height: 10%;
-    text-align: center;
-
+    font-size: calc(var(--square-size) * 0.3);
+    line-height: 0;
+    font-family: verdana;
 }
-.sign > h2{
-    color: white;
-    margin: 0;
-    text-align: center;
-    line-height: 80%;
 
-}
-.sign > h6{
-    color: white;
-    margin: 0;
-    text-align: center;
-
-}
 .arrow_sign{
     width: 90%;
     height: 90%;
@@ -1074,12 +1107,13 @@ body {
 }
 .value_container{
     margin: auto;
-    margin-left: 10%;
+    margin-left: 5%;
 }
 
 .value{
     font-size: calc(var(--square-size) * 0.177);
     color: white;
+    letter-spacing: calc(var(--square-size) * 0.005);
 }
 
 
@@ -1119,7 +1153,7 @@ body {
     padding-right: 2%;
     padding-left: 2%;
     width: 40%;
-    height: 60%;
+    height: 65%;
     margin-top: auto;
     margin-bottom: auto;
     border-style: none solid none none;
@@ -1131,17 +1165,21 @@ body {
 #introduction_text_container > p, #introduction_text_container > a{
     color: white;
     font-family: 'GT-Sectra-Fine-Medium',serif;
-    font-size: calc(var(--square-size) * 0.15);
     font-size: 1.1vw;
     text-transform: uppercase;
     letter-spacing: calc(var(--square-size) * 0.03);
-    line-height: calc(var(--square-size) * 0.19);
+    line-height: calc(var(--square-size) * 0.2);
 
     margin-bottom: calc(var(--square-size) * 0.2);
     display: block;
 }
-#introduction_text_container > p > img{
-    height: calc(var(--square-size) * 0.22);
+#introduction_text_container > p > span{
+    height: calc(var(--square-size) * 0.19);
+    position: relative;
+    top: calc(var(--square-size) * 0.0475);
+}
+#introduction_text_container > p > span > img{
+    height: calc(var(--square-size) * 0.19);
     filter: invert(100%) sepia(4%) saturate(22%) hue-rotate(186deg) brightness(105%) contrast(100%);
 }
 a{

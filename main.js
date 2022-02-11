@@ -9,8 +9,9 @@ var scroll_columns = [];
 var column_number = 6;
 var row_number = 5;
 
-var initial_bonus_spins = 5;
-var bonus_spins = 5; 
+var initial_bonus_spins = 4;
+var retrigger_bonus_spins = 2;
+var bonus_spins = 4; 
 
 var current_bonus = null;
 
@@ -29,7 +30,7 @@ var volume_changed = false;
 
 
 //var odds = [0.16, 0.15, 0.14, 0.13, 0.12, 0.08, 0.07, 0.055, 0.045, 0.03, 0.02];
-var odds = [0.16, 0.15, 0.14, 0.13, 0.12, 0.09, 0.075, 0.065, 0.05, 0.02];
+var odds = [0.16, 0.15, 0.14, 0.13, 0.1176, 0.09, 0.075, 0.065, 0.05, 0.0224];
 //var odds = [0.02, 0.4, 0.01, 0.01, 0.12, 0.09, 0.075, 0.065, 0.05, 0.16]; // test scatter
 //var images = ["10.jpg", "J.jpg", "Q.jpg", "K.jpg", "A.jpg", "P5.jpg", "P4.jpg", "P3.jpg", "P2.jpg", "P1.jpg", "Scatter.jpg"];
 var images = ["hive.png", "immolator.png", "lolita.png", "kayn.png", "prodigal.png", "spider.png", "meathead.png", "assassin.png", "scrapbeak.png", "bonus.png"];
@@ -41,49 +42,49 @@ var coin_values = [0.2, 0.4, 0.6, 0.8, 1, 1.5, 2, 4, 5, 8, 10, 15, 20, 25, 30, 4
 var coin_values_size = coin_values.length;
 
 var coin = 1;
-var Dez_6 =  "5*coin";
-var J_6 = "5*coin";
-var Q_6 = "7.5 * coin";
-var K_6 = "7.5 * coin";
-var As_6 = "10 * coin";
-var P5_6 = "12.5 * coin";
-var P4_6 = "12.5 * coin";
-var P3_6 = "15 * coin";
-var P2_6 = "25 * coin";
-var P1_6 = "100 * coin";
+var Dez_6 =  "coin * 5";
+var J_6 = "coin * 6";
+var Q_6 = "coin * 8";
+var K_6 = "coin * 10";
+var As_6 = "coin * 12";
+//var P5_6 = "12.5 * coin";
+var P4_6 = "coin * 20";
+var P3_6 = "coin * 28";
+var P2_6 = "coin * 40";
+var P1_6 = "coin * 100";
 
-var Dez_5 = "coin * 2";
-var J_5 = "coin * 2";
-var Q_5 = "coin * 3";
-var K_5 = "coin * 3";
-var As_5 = "coin * 4";
-var P5_5 = "coin * 5";
-var P4_5 = "coin * 5";
-var P3_5 = "coin * 6";
-var P2_5 = "coin * 10";
-var P1_5 = "coin * 40";
+var Dez_5 = "coin * 2.5";
+var J_5 = "coin * 3";
+var Q_5 = "coin * 4";
+var K_5 = "coin * 5";
+var As_5 = "coin * 6";
+//var P5_5 = "coin * 5";
+var P4_5 = "coin * 10";
+var P3_5 = "coin * 14";
+var P2_5 = "coin * 20";
+var P1_5 = "coin * 50";
 
 var Dez_4 = "coin * 1";
-var J_4 = "coin * 1.25";
-var Q_4 = "coin * 1.5";
-var K_4 = "coin * 2";
-var As_4 = "coin * 2.5";
-var P5_4 = "coin * 3";
-var P4_4 = "coin * 3";
-var P3_4 = "coin * 4";
-var P2_4 = "coin * 8";
+var J_4 = "coin * 1.5";
+var Q_4 = "coin * 2";
+var K_4 = "coin * 2.5";
+var As_4 = "coin * 3";
+//var P5_4 = "coin * 3";
+var P4_4 = "coin * 5";
+var P3_4 = "coin * 7";
+var P2_4 = "coin * 10";
 var P1_4 = "coin * 25";
 
 
-var Dez_3 = "coin * 0.25";
+var Dez_3 = "coin * 0.3";
 var J_3 = "coin * 0.50";
 var Q_3 = "coin * 0.75";
-var K_3 = "coin * 0.75";
-var As_3 = "coin";
-var P5_3 = "coin * 1.25";
-var P4_3 = "coin * 1.25";
-var P3_3 = "coin * 1.5";
-var P2_3 = "coin * 2.5";
+var K_3 = "coin * 1";
+var As_3 = "coin * 1.5";
+//var P5_3 = "coin * 1.25";
+var P4_3 = "coin * 2";
+var P3_3 = "coin * 2.5";
+var P2_3 = "coin * 3.5";
 var P1_3 = "coin * 5";
 
 
@@ -132,10 +133,10 @@ function change_coin(c, element) {
 
 function update_info_values(){
   for(var index = 0; index < symbol_number - 1; index++){
-    document.getElementById("value" + (index+1) + "_" + 6).innerHTML = "6 - €" +  eval(line_6_symbols[index]);
-    document.getElementById("value" + (index+1) + "_" + 5).innerHTML = "5 - €" +  eval(line_5_symbols[index]);
-    document.getElementById("value" + (index+1) + "_" + 4).innerHTML = "4 - €" +  eval(line_4_symbols[index]);
-    document.getElementById("value" + (index+1) + "_" + 3).innerHTML = "3 - €" +  eval(line_3_symbols[index]);
+    document.getElementById("value" + (index+1) + "_" + 6).innerHTML = "6 - €" +  eval(line_6_symbols[index]).toFixed(2).replace('.', ',');
+    document.getElementById("value" + (index+1) + "_" + 5).innerHTML = "5 - €" +  eval(line_5_symbols[index]).toFixed(2).replace('.', ',');
+    document.getElementById("value" + (index+1) + "_" + 4).innerHTML = "4 - €" +  eval(line_4_symbols[index]).toFixed(2).replace('.', ',');
+    document.getElementById("value" + (index+1) + "_" + 3).innerHTML = "3 - €" +  eval(line_3_symbols[index]).toFixed(2).replace('.', ',');
   }
 }
 
@@ -464,19 +465,17 @@ function highlight_squares(b) {
   
 }
 
-var scatter_highlighting = false;
-function highlight_scatters() {
+function highlight_scatters(number_of_scatter) {
   scatters.forEach(pos => {
-    if(!scatter_highlighting){
-      pos.highlight_square();
-      
-    }
-    else{
-      pos.stop_highlight_square();
-    }
-    
+    pos.highlight_square();
   });
-  scatter_highlighting = !scatter_highlighting;
+  if(number_of_scatter >= 3){
+    setTimeout(() => {
+      var audio = new Audio('Sounds/headshot.mp3');
+      audio.volume = volume / 100;
+      audio.play();
+    }, 200);
+  }
   
 }
 
@@ -697,7 +696,7 @@ class Slot{
     }
   }
 
-  check_for_bonus(){
+  check_for_scatters(){
     scatters = [];
     var number_of_scatter = 0;
 
@@ -710,17 +709,17 @@ class Slot{
         }
       }
     }
-    return number_of_scatter >= 3;
+    return number_of_scatter;
   }
 }
 
 
 class Bonus{
-  constructor(){
+  constructor(number_of_scatter){
 
     this.total_won = 0;
 
-    this.total_spins = initial_bonus_spins;    
+    this.total_spins = initial_bonus_spins + (number_of_scatter - 3) * retrigger_bonus_spins;    
 
     this.current_bonus_spin = 1;
   }
@@ -745,6 +744,10 @@ class Bonus{
     return this.current_bonus_spin;
   }
 
+  increase_total_spin_number(n){
+    this.total_spins += retrigger_bonus_spins * (n - 2);
+  }
+
 
 }
 
@@ -762,9 +765,17 @@ $(document).ready(function(){
   
 
   $(document).keydown(function(e) {
-    if (e.keyCode == 83 || e.keyCode == 32) {    //S
+    if (e.keyCode == 83 || e.keyCode == 32) {    //S or space
       try_to_spin();
 
+    }
+    if(e.keyCode == 82){ //R
+      //test
+      for(var k = 0; k < column_number; k++){
+        var c = columns[k];
+        var offset = c.get_square.offsetTop - c.get_square.getBoundingClientRect().height * shadow_frac;
+        c.get_column.scroll({top: offset});
+      }
     }
 
   });
@@ -783,7 +794,6 @@ function play_music(number){
 
     var n = parseInt(current_audio.dataset.audioNumber);
     if(n != number){
-      console.log("entered");
       current_audio.pause();
       current_audio.currentTime = 0;
       current_audio.loop = false;
@@ -935,7 +945,11 @@ function update_credit(){
 
 var sincronization = 0;
 function spin() {
-  sincronization = 0; //may be useless
+  for(var k = 0; k < column_number; k++){
+    var c = columns[k];
+    var add_quantity = 100 - c.current_index;
+    add_symbols_to_column(c.valueOf(), add_quantity.valueOf());
+  }
 
   var r = Math.random();
   var amount = 40 + Math.round(r*20);
@@ -998,36 +1012,6 @@ function spin() {
   scroll_columns[4].set_interval_id = id4;
   let id5 = setInterval(function(){  spin_column(5); }, 8);
   scroll_columns[5].set_interval_id = id5;
-
-  /*FIX ME weird effect made me feel sick
-  setTimeout(() => {
-    let id0 = setInterval(function(){  spin_column(0); }, 10);
-    scroll_columns[0].set_interval_id = id0;
-  }, 0);
-  setTimeout(() => {
-    let id1 = setInterval(function(){  spin_column(1); }, 10);
-    scroll_columns[1].set_interval_id = id1;
-  }, 300);
-
-  setTimeout(() => {
-    let id2 = setInterval(function(){  spin_column(2); }, 10);
-    scroll_columns[2].set_interval_id = id2;
-  }, 600);
-
-  setTimeout(() => {
-    let id3 = setInterval(function(){  spin_column(3); }, 10);
-    scroll_columns[3].set_interval_id = id3;
-  }, 900);
-  
-  setTimeout(() => {
-    let id4 = setInterval(function(){  spin_column(4); }, 10);
-    scroll_columns[4].set_interval_id = id4;
-  }, 1200);
-
-  setTimeout(() => {
-    let id5 = setInterval(function(){  spin_column(5); }, 10);
-    scroll_columns[5].set_interval_id = id5;
-  }, 1500);*/
 }
 
 function spin_column(index) {
@@ -1044,12 +1028,8 @@ function spin_column(index) {
     frac = 1;
   }
 
-  //let s = scroll.get_final_offset + scroll.get_total_offset * Math.pow((1 - Math.pow(frac, 3)), 20); 
-  //let s = scroll.get_final_offset + Math.pow(scroll.get_total_offset * (1 - Math.pow(frac, 3)), 1-frac / 2);
-  let s = scroll.get_final_offset + scroll.get_total_offset * (1 - Math.pow(frac, 2)); 
+  let s = scroll.get_final_offset + scroll.get_total_offset * (1/2 * Math.sin(Math.PI*(Math.pow(frac, 1.6 - frac) + 0.5)) + 0.5);
   column.get_column.scroll({top: s});
-
-  //console.log("Final scroll = " + column.get_column.scrollTop);
 
   if(diff > scroll.get_animation_time){
 
@@ -1062,30 +1042,28 @@ function spin_column(index) {
     clearInterval(scroll.get_interval_id);
     sincronization++;
     
-    endSpin();
+    end_spin();
   }
 
 }
 var multiplier = 1;
-function endSpin(){
+function end_spin(){
   if(sincronization == column_number){
 
     sincronization = 0;
     for(var k = 0; k < column_number; k++){
+      
       var c = columns[k];
   
       var child = c.get_column.children;
       var size = child.length;
       var current_index = c.current_index;
-  
+      
+      
       for(var i = size - 1; i > current_index + 5; i--){
         c.get_column.removeChild(child[i]);
       }
-      var add_quantity = 100 - current_index;
-      add_symbols_to_column(c, add_quantity);
 
-      var offset = c.get_square.offsetTop - c.get_square.getBoundingClientRect().height * shadow_frac;
-      c.get_column.scroll({top: offset});
       
       
     }
@@ -1101,24 +1079,22 @@ function endSpin(){
       credit += total;
       update_credit();
 
-
-      if(slot.check_for_bonus()){ //enter bonus 
+      var number_of_scatter = slot.check_for_scatters();
+      if(number_of_scatter >= 3){ //enter bonus 
 
         stop_automatic_play();
 
 
         setTimeout( function () {
-          highlight_scatters();
-          setTimeout(() => {
-            var audio = new Audio('Sounds/headshot.mp3');
-            audio.volume = volume / 100;
-            audio.play();
-          }, 200);
+
+          highlight_scatters(number_of_scatter);
+
           
-          highlight_scatters();
-        }, canvas_flickering_time / 2);
+          }, canvas_flickering_time / 2);
         
         entering_bonus = true;
+        current_bonus = new Bonus(number_of_scatter);
+
         setTimeout(() => {
           show_bonus_screen();
         }, 3000);
@@ -1128,13 +1104,14 @@ function endSpin(){
           setTimeout(() => {
             if(auto_spins_left > 0){
               auto_spins_left--;
+              update_auto_spin_count_display();
               try_to_spin();
             }
             else{
               stop_automatic_play();
             }
             
-          }, 1000);
+          }, total == 0 ? 1000 : 2000);
         }
       }
     }
@@ -1250,21 +1227,18 @@ function show_bonus_screen() {
   var e = document.getElementById("enter_bonus");
   e.classList.remove("not_show");
   e.classList.add("show");
+  e = document.getElementById("you_won_spins");
+  e.innerHTML =   "You won " + current_bonus.get_total_spins + " free spins!";
   
 }
 
 
 function start_bonus() {
-  clearInterval(scatter_highlight_interval);
-  scatter_highlighting = true;
-  highlight_scatters();
+
+
   in_bonus = true;
-  current_bonus = new Bonus();
   multiplier = 1;
   
-  bonus_spins = initial_bonus_spins;
-  current_bonus_spin = 1;
-
   update_bonus_spins();
   update_multiplier_indicator();
 
@@ -1296,6 +1270,14 @@ function update_total_win_bonus() {
 var in_bonus = false;
 function bonus(total) {
 
+  var number_of_scatter = slot.check_for_scatters();
+  if(number_of_scatter > 0){
+    highlight_scatters(number_of_scatter);
+  }
+  if(number_of_scatter >= 3){
+    current_bonus.increase_total_spin_number(number_of_scatter);
+  }
+
   if(total > 0){ //current spin is an hit
     current_bonus.go_to_next_spin();
     current_bonus.increase_total(total);
@@ -1312,6 +1294,9 @@ function bonus(total) {
   }
   else{ //no pay in this spin, continue
     multiplier++;
+    if(number_of_scatter <= 2){
+      multiplier += number_of_scatter
+    }
     setTimeout(() => {
       perform_spin();
     }, 1000);
@@ -1389,12 +1374,20 @@ function automatic_play() {
     return;
   }
 
-  auto_spins_left = 100;
+  auto_spins_left = 99;
   auto_spin = true;
   document.getElementById("automatic_spins").classList.remove("automatic_spins_off");
   document.getElementById("automatic_spins").classList.add("automatic_spins_active");
   try_to_spin();
+  update_auto_spin_count_display();
 
+}
+
+function update_auto_spin_count_display(){
+  var e = document.getElementById("bonus_win_container");
+  $(e).css("display", "block");
+  e = document.getElementById("bonus_win");
+  e.innerHTML = "Auto spins left: " + auto_spins_left;
 }
 
 function stop_automatic_play() {
@@ -1402,6 +1395,8 @@ function stop_automatic_play() {
   auto_spins_left = 0;
   document.getElementById("automatic_spins").classList.remove("automatic_spins_active");
   document.getElementById("automatic_spins").classList.add("automatic_spins_off");
+  var e = document.getElementById("bonus_win_container");
+  $(e).css("display", "none");
 }
 
 

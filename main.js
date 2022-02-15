@@ -9,30 +9,10 @@ var scroll_columns = [];
 var column_number = 6;
 var row_number = 5;
 
-var initial_bonus_spins = 4;
-var retrigger_bonus_spins = 2;
-var bonus_spins = 4; 
-
-var current_bonus = null;
-
-var current_bonus_spin = 1;
-
-var auto_spin = false;
-var auto_spins_left = 0;
-
-var current_audio = null;
-var gradual_audio_increase_id = null;
-var loop = false;
-
-var volume = 100;
-var last_volume = 100;
-var volume_changed = false;
+var multiplier = 1;
 
 
-//var odds = [0.16, 0.15, 0.14, 0.13, 0.12, 0.08, 0.07, 0.055, 0.045, 0.03, 0.02];
 var odds = [0.16, 0.15, 0.14, 0.13, 0.1176, 0.09, 0.075, 0.065, 0.05, 0.0224];
-//var odds = [0.02, 0.4, 0.01, 0.01, 0.12, 0.09, 0.075, 0.065, 0.05, 0.16]; // test scatter
-//var images = ["10.jpg", "J.jpg", "Q.jpg", "K.jpg", "A.jpg", "P5.jpg", "P4.jpg", "P3.jpg", "P2.jpg", "P1.jpg", "Scatter.jpg"];
 var images = ["hive.png", "immolator.png", "lolita.png", "kayn.png", "prodigal.png", "spider.png", "meathead.png", "assassin.png", "scrapbeak.png", "bonus.png"];
 var symbol_number = odds.length; 
 
@@ -47,7 +27,6 @@ var J_6 = "coin * 6";
 var Q_6 = "coin * 8";
 var K_6 = "coin * 10";
 var As_6 = "coin * 12";
-//var P5_6 = "12.5 * coin";
 var P4_6 = "coin * 20";
 var P3_6 = "coin * 28";
 var P2_6 = "coin * 40";
@@ -58,7 +37,6 @@ var J_5 = "coin * 3";
 var Q_5 = "coin * 4";
 var K_5 = "coin * 5";
 var As_5 = "coin * 6";
-//var P5_5 = "coin * 5";
 var P4_5 = "coin * 10";
 var P3_5 = "coin * 14";
 var P2_5 = "coin * 20";
@@ -69,7 +47,6 @@ var J_4 = "coin * 1.5";
 var Q_4 = "coin * 2";
 var K_4 = "coin * 2.5";
 var As_4 = "coin * 3";
-//var P5_4 = "coin * 3";
 var P4_4 = "coin * 5";
 var P3_4 = "coin * 7";
 var P2_4 = "coin * 10";
@@ -81,22 +58,10 @@ var J_3 = "coin * 0.50";
 var Q_3 = "coin * 0.75";
 var K_3 = "coin * 1";
 var As_3 = "coin * 1.5";
-//var P5_3 = "coin * 1.25";
 var P4_3 = "coin * 2";
 var P3_3 = "coin * 2.5";
 var P2_3 = "coin * 3.5";
 var P1_3 = "coin * 5";
-
-
-//line_6 = [nove_6, Dez_6, J_6, Q_6, K_6, As_6, P5_6, P4_6, P3_6, P2_6, P1_6]
-//line_5 = [nove_5, Dez_5, J_5, Q_5, K_5, As_5, P5_5, P4_5, P3_5, P2_5, P1_5]
-//line_4 = [nove_4, Dez_4, J_4, Q_4, K_4, As_4, P5_4, P4_4, P3_4, P2_4, P1_4]
-//line_3 = [nove_3, Dez_3, J_3, Q_3, K_3, As_3, P5_3, P4_3, P3_3, P2_3, P1_3]
-
-//line_6 = [Dez_6, J_6, Q_6, K_6, As_6, P5_6, P4_6, P3_6, P2_6, P1_6]
-//line_5 = [Dez_5, J_5, Q_5, K_5, As_5, P5_5, P4_5, P3_5, P2_5, P1_5]
-//line_4 = [Dez_4, J_4, Q_4, K_4, As_4, P5_4, P4_4, P3_4, P2_4, P1_4]
-//line_3 = [Dez_3, J_3, Q_3, K_3, As_3, P5_3, P4_3, P3_3, P2_3, P1_3]
 
 
 var line_3_symbols = [Dez_3, J_3, Q_3, K_3, As_3, P4_3, P3_3, P2_3, P1_3];
@@ -106,40 +71,9 @@ var line_6_symbols = [Dez_6, J_6, Q_6, K_6, As_6, P4_6, P3_6, P2_6, P1_6];
 
 var scroll_animation_time = 2000; //1 sec
 
-
-function enter_slot(){
-  var element = document.getElementById("introductory_page");
-  $(element).css("display", "none");
-}
-
-function change_coin(c, element) {
-  var tmp = coin_index + c;
-  if(tmp >= 0 && tmp < coin_values_size && !in_bonus && !entering_bonus && !in_spin){
-    coin_index = tmp;
-    coin = coin_values[coin_index];
-
-    update_info_values();
-
-    element.style.animation = 'none';
-    element.offsetHeight; /* trigger reflow */
-    element.style.animation = null; 
-
-    element = document.getElementById("bet");
-    element.innerHTML = "€" + coin.toString().replace('.',',');
-  }
-  //element.classList.remove("bet_button_clicked");
-  //element.classList.add("bet_button_clicked"); 
-}
-
-function update_info_values(){
-  for(var index = 0; index < symbol_number - 1; index++){
-    document.getElementById("value" + (index+1) + "_" + 6).innerHTML = "6 - €" +  eval(line_6_symbols[index]).toFixed(2).replace('.', ',');
-    document.getElementById("value" + (index+1) + "_" + 5).innerHTML = "5 - €" +  eval(line_5_symbols[index]).toFixed(2).replace('.', ',');
-    document.getElementById("value" + (index+1) + "_" + 4).innerHTML = "4 - €" +  eval(line_4_symbols[index]).toFixed(2).replace('.', ',');
-    document.getElementById("value" + (index+1) + "_" + 3).innerHTML = "3 - €" +  eval(line_3_symbols[index]).toFixed(2).replace('.', ',');
-  }
-}
-
+var slot = null;
+var in_spin = false;
+var first_spin = false;
 
 class Scroll_Column{
   constructor(column){
@@ -330,34 +264,6 @@ class Pos {
 
 }
 
-//FIX ME
-function findClassOnPos(posX, posY, classe){
-  var elements = document.elementsFromPoint(posX, posY);
-  var size = elements.length;
-  for(var i = 0; i < size; i++){
-      if(elements[i].classList.contains(classe)){
-          return elements[i];
-      }
-  }
-  return null;
-}
-function findChildrenWithClass(element, className){
-  if(element == null){
-      return null;
-  }  
-  if(element.classList.contains(className)){
-      return element;
-  }
-  else{
-      for(var child of element.children){
-          var childResult = findChildrenWithClass(child,className);
-          if(childResult != null){ return childResult;}
-      }
-      return null;
-  } 
-}
-
-
 class Line{
   constructor(positions){
     this.positions = positions;
@@ -440,11 +346,7 @@ class Line{
   }
 }
 
-
-
 var paying_squares = [];
-var scatters = [];
-var scatter_highlight_interval = 0;
 
 function add_paying_square(square) {
   if(!paying_squares.includes(square)){
@@ -462,20 +364,6 @@ function highlight_squares(b) {
       pos.stop_highlight_square();
     }
   });
-  
-}
-
-function highlight_scatters(number_of_scatter) {
-  scatters.forEach(pos => {
-    pos.highlight_square();
-  });
-  if(number_of_scatter >= 3){
-    setTimeout(() => {
-      var audio = new Audio('Sounds/headshot.mp3');
-      audio.volume = volume / 100;
-      audio.play();
-    }, 200);
-  }
   
 }
 
@@ -713,50 +601,7 @@ class Slot{
   }
 }
 
-
-class Bonus{
-  constructor(number_of_scatter){
-
-    this.total_won = 0;
-
-    this.total_spins = initial_bonus_spins + (number_of_scatter - 3) * retrigger_bonus_spins;    
-
-    this.current_bonus_spin = 1;
-  }
-
-  increase_total(m){
-    this.total_won += m;
-  }
-
-  go_to_next_spin(){
-    this.current_bonus_spin++;
-  }
-
-  get get_total(){
-    return this.total_won;
-  }
-
-  get get_total_spins(){
-    return this.total_spins;
-  }
-
-  get get_current_spin(){
-    return this.current_bonus_spin;
-  }
-
-  increase_total_spin_number(n){
-    this.total_spins += retrigger_bonus_spins * (n - 2);
-  }
-
-
-}
-
-var slot = null;
-var in_spin = false;
-var first_spin = false;
 $(document).ready(function(){
-
-  
 
   startSlot();
   update_info_values();
@@ -769,78 +614,10 @@ $(document).ready(function(){
       try_to_spin();
 
     }
-    if(e.keyCode == 82){ //R
-      //test
-      for(var k = 0; k < column_number; k++){
-        var c = columns[k];
-        var offset = c.get_square.offsetTop - c.get_square.getBoundingClientRect().height * shadow_frac;
-        c.get_column.scroll({top: offset});
-      }
-    }
 
   });
 
 });
-
-
-function stop_music(number){
-  current_audio.pause();
-  $(document.getElementById("audio_" + number + "_play")).css("display", "block");
-  $(document.getElementById("audio_" + number + "_pause")).css("display", "none");
-}
- 
-function play_music(number){
-  if(current_audio != null){
-
-    var n = parseInt(current_audio.dataset.audioNumber);
-    if(n != number){
-      current_audio.pause();
-      current_audio.currentTime = 0;
-      current_audio.loop = false;
-      $(document.getElementById("audio_" + n + "_play")).css("display", "block");
-      $(document.getElementById("audio_" + n + "_pause")).css("display", "none");
-    }
-
-  }
-  current_audio = document.getElementById("audio" + number);
-  current_audio.play();
-  current_audio.loop = loop;
-  current_audio.volume = volume / 100;
-  var n = current_audio.dataset.audioNumber;
-
-  $(document.getElementById("audio_" + n + "_play")).css("display", "none");
-  $(document.getElementById("audio_" + n + "_pause")).css("display", "block");
-}
-
-function start_playing_music() {
-  if(current_audio != null){
-    return;
-  }
-  setTimeout(() => {
-    play_music(1);
-    if(volume_changed){
-      current_audio.volume = volume;
-      return;
-    }
-    var initial_volume = 0.2;
-    current_audio.volume = initial_volume;
-
-    gradual_audio_increase_id = setInterval(() => {
-      var v = current_audio.volume;
-      v += 0.05;
-      if(v > volume / 100){
-        v = volume / 100;
-      }
-      current_audio.volume = v.valueOf();
-    }, 1000);
-
-    setTimeout(() => {
-      clearInterval(gradual_audio_increase_id);
-      gradual_audio_increase_id = null;
-    }, 20000);
-
-  }, 2000);
-}
 
 function try_to_spin() {
   if(!first_spin){
@@ -858,6 +635,7 @@ function try_to_spin() {
     }
   } 
 }
+
 function perform_spin() {
   reset_canvas();
   spin();
@@ -920,24 +698,6 @@ function good_luck() {
 
 }
 
-function update_bonus_spins() {
-  var e = document.getElementById("spin_count");
-  if(current_bonus == null){
-    e.innerHTML = 1 + " / " + initial_bonus_spins + " SPINS";
-  }
-  else{
-    e.innerHTML = current_bonus.get_current_spin + " / " + current_bonus.get_total_spins + " SPINS";
-
-  }
-}
-
-function update_multiplier_indicator() {
-
-  var e = document.getElementById("multiplier");
-  e.innerHTML = multiplier + " X";
-  
-}
-
 function update_credit(){
   var element = document.getElementById("credit");
   element.innerHTML = "€" + (Math.round(credit * 100) / 100).toFixed(2).replace('.', ',');
@@ -947,7 +707,7 @@ var sincronization = 0;
 function spin() {
   for(var k = 0; k < column_number; k++){
     var c = columns[k];
-    var add_quantity = 100 - c.current_index;
+    var add_quantity = 110 - c.current_index;
     add_symbols_to_column(c.valueOf(), add_quantity.valueOf());
   }
 
@@ -987,14 +747,21 @@ function spin() {
 
     column.set_square = new_top_square.valueOf();
     column.set_current_index = new_index.valueOf();
+    
+    var added_amount = 10;
+    if(hyper_spin){
+      added_amount /= 2;
+    }
     if(i != 0){
-      var add = Math.round(Math.random() * 5);
+      var add = Math.round(Math.random() * added_amount);
+      add = added_amount;
       amount += add; 
       animation_time += time_per_symbol * add;
       scroll.set_animation_time = animation_time;
     }else{
       scroll.set_animation_time = animation_time;
-      var add = Math.round(Math.random() * 5);
+      var add = Math.round(Math.random() * added_amount);
+      add = added_amount;
       amount += add; 
     }
   }
@@ -1046,7 +813,7 @@ function spin_column(index) {
   }
 
 }
-var multiplier = 1;
+
 function end_spin(){
   if(sincronization == column_number){
 
@@ -1125,7 +892,6 @@ function end_spin(){
 
   return;
 }
-
 
 function add_symbols_to_column(column, quantity){
   //adds new elements
@@ -1219,123 +985,7 @@ function create_element(index){
 
 }
 
-var entering_bonus = false;
-var can_enter = false;
 
-function show_bonus_screen() {
-  can_enter = true;
-  var e = document.getElementById("enter_bonus");
-  e.classList.remove("not_show");
-  e.classList.add("show");
-  e = document.getElementById("you_won_spins");
-  e.innerHTML =   "You won " + current_bonus.get_total_spins + " free spins!";
-  
-}
-
-
-function start_bonus() {
-
-
-  in_bonus = true;
-  multiplier = 1;
-  
-  update_bonus_spins();
-  update_multiplier_indicator();
-
-  var e = document.getElementById("spin_indicator");
-  e.classList.remove("not_showing_spin_indicator");
-  e.classList.add("showing_spin_indicator");
-
-  e = document.getElementById("multiplier_indicator");
-  e.classList.remove("not_showing_multiplier_indicator");
-  e.classList.add("showing_multiplier_indicator");
-
-  e = document.getElementById("bonus_win_container");
-  $(e).css("display", "block");
-  e = document.getElementById("bonus_win");
-  e.innerHTML = "Total win: €0,00";
-
-
-  setTimeout(() => {
-    in_spin = false;
-    perform_spin();
-  }, 1500);
-}
-
-function update_total_win_bonus() {
-  var e = document.getElementById("bonus_win");
-  e.innerHTML = "Total win: €" + current_bonus.get_total.toFixed(2).replace('.',',');
-}
-
-var in_bonus = false;
-function bonus(total) {
-
-  var number_of_scatter = slot.check_for_scatters();
-  if(number_of_scatter > 0){
-    highlight_scatters(number_of_scatter);
-  }
-  if(number_of_scatter >= 3){
-    current_bonus.increase_total_spin_number(number_of_scatter);
-  }
-
-  if(total > 0){ //current spin is an hit
-    current_bonus.go_to_next_spin();
-    current_bonus.increase_total(total);
-    update_total_win_bonus();
-    multiplier = 1;
-    if(current_bonus.get_current_spin > current_bonus.get_total_spins){ //end of bonus
-      end_bonus();
-    }
-    else{ //go to next spin
-      setTimeout(() => {
-        perform_spin();
-      }, 2000);
-    }
-  }
-  else{ //no pay in this spin, continue
-    multiplier++;
-    if(number_of_scatter <= 2){
-      multiplier += number_of_scatter
-    }
-    setTimeout(() => {
-      perform_spin();
-    }, 1000);
-  }
-
-}
-var can_leave_bonus = false;
-function end_bonus() {
-  var e = document.getElementById("spin_indicator");
-  e.classList.remove("showing_spin_indicator");
-  e.classList.add("not_showing_spin_indicator");
-
-  e = document.getElementById("multiplier_indicator");
-  e.classList.remove("showing_multiplier_indicator");
-
-  e.classList.add("not_showing_multiplier_indicator");
-
-
-  e = document.getElementById("won_in_bonus");
-  e.innerHTML = "You won €" + current_bonus.get_total.toFixed(2) + "!";
-
-  setTimeout(() => {
-    var e = document.getElementById("leave_bonus");
-    e.classList.remove("not_show");
-    e.classList.add("show");
-    setTimeout(() => {
-      can_leave_bonus = true;
-    }, 1000);
-  }, 1500);
-
-  credit += current_bonus.get_total;
-  update_credit();
-  
-
-  current_bonus = null;
-
-
-
-}
 
 window.onmousedown = function(event) {
   //printMousePosition(event);
@@ -1364,141 +1014,36 @@ window.onresize = function(event) {
   slot = new Slot(document.getElementById("slot"));
 };
 
-
-function automatic_play() {
-  if(auto_spin){
-    stop_automatic_play();
-    return;
-  }
-  if(in_spin || entering_bonus || in_bonus){
-    return;
-  }
-
-  auto_spins_left = 99;
-  auto_spin = true;
-  document.getElementById("automatic_spins").classList.remove("automatic_spins_off");
-  document.getElementById("automatic_spins").classList.add("automatic_spins_active");
-  try_to_spin();
-  update_auto_spin_count_display();
-
-}
-
-function update_auto_spin_count_display(){
-  var e = document.getElementById("bonus_win_container");
-  $(e).css("display", "block");
-  e = document.getElementById("bonus_win");
-  e.innerHTML = "Auto spins left: " + auto_spins_left;
-}
-
-function stop_automatic_play() {
-  auto_spin = false;
-  auto_spins_left = 0;
-  document.getElementById("automatic_spins").classList.remove("automatic_spins_active");
-  document.getElementById("automatic_spins").classList.add("automatic_spins_off");
-  var e = document.getElementById("bonus_win_container");
-  $(e).css("display", "none");
-}
-
-
-function open_info(){
-  var info = document.getElementById("info");
-  if(info.style.display === "block"){
-    $(info).css('display', 'none');
-  }
-  else{
-    $(info).css('display', 'block');
-  }
-  select_image();
-}
-
-
-function select_image(){
-  var audio = new Audio('Sounds/select.wav');
-  audio.volume = 0.1;
-  audio.play();
-}
-
-function open_sound_bar() {
-  var sound = document.getElementById('sound_bar_container');
-  if(sound.style.display === "block"){
-    $(sound).css('display', 'none');
-  }
-  else{
-    $(sound).css('display', 'block');
-  }
-}
-
-function update_volume(value){
-  last_volume = volume.valueOf();
-  change_volume(value);
-}
-
-
-function change_volume(value){
-
-  volume_changed = true;
-  volume = value;
-
-  $("div.sound_bar_value").html(value);
-
-  var bars = document.getElementsByClassName('sound_bar');
-  for(var i = 0; i < bars.length; i++){
-    bars[i].value = value;
-  }
-
-  if(value == 0){
-    $(document.getElementById("sound")).css("display", "none");
-    $(document.getElementById("no_sound")).css("display", "block");
-  }
-  else{
-    $(document.getElementById("sound")).css("display", "block");
-    $(document.getElementById("no_sound")).css("display", "none");
-    
-    
-  }
-  if(current_audio == null){
-    return;
-  }
-  current_audio.volume = value/100;
-  if(gradual_audio_increase_id != null){
-    clearInterval(gradual_audio_increase_id);
-    gradual_audio_increase_id = null;
-  }
-}
-
-function change_loop(element){
-  if(element.classList.contains("selected")){
-    element.classList.remove("selected");
-    element.classList.add("not_selected");
-    loop = false;
-    
-  }
-  else{
-    element.classList.remove("not_selected");
-    element.classList.add("selected");
-    loop = true;
-  }
-  if(current_audio != null){
-    current_audio.loop = loop;
-  }
-}
-
-function hyper_spin(element){
-  if(element.classList.contains("normal_spin")){
-    element.classList.remove("normal_spin");
-    element.classList.remove("hyper_spin");
-    scroll_animation_time = 1300;
-  }
-  else{
-    element.classList.remove("hyper_spin");
-    element.classList.add("normal_spin");
-    scroll_animation_time = 2000;
-  }
-}
-
 function printMousePosition(ev){
   console.log("Mouse X = " + ev.clientX);
   console.log("Mouse Y = " + ev.clientY);
+}
+
+function findClassOnPos(posX, posY, classe){
+  var elements = document.elementsFromPoint(posX, posY);
+  var size = elements.length;
+  for(var i = 0; i < size; i++){
+      if(elements[i].classList.contains(classe)){
+          return elements[i];
+      }
+  }
+  return null;
+}
+
+function findChildrenWithClass(element, className){
+  if(element == null){
+      return null;
+  }  
+  if(element.classList.contains(className)){
+      return element;
+  }
+  else{
+      for(var child of element.children){
+          var childResult = findChildrenWithClass(child,className);
+          if(childResult != null){ return childResult;}
+      }
+      return null;
+  } 
 }
 
 

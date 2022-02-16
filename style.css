@@ -333,6 +333,7 @@ body {
     margin: 0;
     text-align: center;
     color: white;
+    font-size: calc(var(--square-size) * 0.25);
 }
 
 @keyframes hide_spin_indicator {

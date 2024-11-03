@@ -1,0 +1,145 @@
+{
+  "gridSize": {
+    "columns": 6,
+    "rows": 5
+  },
+  "gameSettings": {
+    "multiplier": 1,
+    "symbolNumber": 10,
+    "credit": 100000,
+    "coinIndex": 4,
+    "coin": 1
+  },
+  "odds": [0.16, 0.15, 0.14, 0.13, 0.1176, 0.09, 0.075, 0.065, 0.05, 0.0224],
+  "images": [
+    "hive.png",
+    "immolator.png",
+    "lolita.png",
+    "kayn.png",
+    "prodigal.png",
+    "spider.png",
+    "meathead.png",
+    "assassin.png",
+    "scrapbeak.png",
+    "bonus.png"
+  ],
+  "coinValues": [0.2, 0.4, 0.6, 0.8, 1, 1.5, 2, 4, 5, 8, 10, 15, 20, 25, 30, 40, 50, 75, 100, 200, 300, 400, 600, 1000],
+  "payouts": {
+    "line3": {
+      "Dez": "coin * 0.3",
+      "J": "coin * 0.50",
+      "Q": "coin * 0.75",
+      "K": "coin * 1",
+      "As": "coin * 1.5",
+      "P4": "coin * 2",
+      "P3": "coin * 2.5",
+      "P2": "coin * 3.5",
+      "P1": "coin * 5"
+    },
+    "line4": {
+      "Dez": "coin * 1",
+      "J": "coin * 1.5",
+      "Q": "coin * 2",
+      "K": "coin * 2.5",
+      "As": "coin * 3",
+      "P4": "coin * 5",
+      "P3": "coin * 7",
+      "P2": "coin * 10",
+      "P1": "coin * 25"
+    },
+    "line5": {
+      "Dez": "coin * 2.5",
+      "J": "coin * 3",
+      "Q": "coin * 4",
+      "K": "coin * 5",
+      "As": "coin * 6",
+      "P4": "coin * 10",
+      "P3": "coin * 14",
+      "P2": "coin * 20",
+      "P1": "coin * 50"
+    },
+    "line6": {
+      "Dez": "coin * 5",
+      "J": "coin * 6",
+      "Q": "coin * 8",
+      "K": "coin * 10",
+      "As": "coin * 12",
+      "P4": "coin * 20",
+      "P3": "coin * 28",
+      "P2": "coin * 40",
+      "P1": "coin * 100"
+    }
+  }
+}{
+  "gridSize": {
+    "columns": 6,
+    "rows": 5
+  },
+  "gameSettings": {
+    "multiplier": 1,
+    "symbolNumber": 10,
+    "credit": 100000,
+    "coinIndex": 4,
+    "coin": 1
+  },
+  "odds": [0.16, 0.15, 0.14, 0.13, 0.1176, 0.09, 0.075, 0.065, 0.05, 0.0224],
+  "images": [
+    "hive.png",
+    "immolator.png",
+    "lolita.png",
+    "kayn.png",
+    "prodigal.png",
+    "spider.png",
+    "meathead.png",
+    "assassin.png",
+    "scrapbeak.png",
+    "bonus.png"
+  ],
+  "coinValues": [0.2, 0.4, 0.6, 0.8, 1, 1.5, 2, 4, 5, 8, 10, 15, 20, 25, 30, 40, 50, 75, 100, 200, 300, 400, 600, 1000],
+  "payouts": {
+    "line3": {
+      "Dez": "coin * 0.3",
+      "J": "coin * 0.50",
+      "Q": "coin * 0.75",
+      "K": "coin * 1",
+      "As": "coin * 1.5",
+      "P4": "coin * 2",
+      "P3": "coin * 2.5",
+      "P2": "coin * 3.5",
+      "P1": "coin * 5"
+    },
+    "line4": {
+      "Dez": "coin * 1",
+      "J": "coin * 1.5",
+      "Q": "coin * 2",
+      "K": "coin * 2.5",
+      "As": "coin * 3",
+      "P4": "coin * 5",
+      "P3": "coin * 7",
+      "P2": "coin * 10",
+      "P1": "coin * 25"
+    },
+    "line5": {
+      "Dez": "coin * 2.5",
+      "J": "coin * 3",
+      "Q": "coin * 4",
+      "K": "coin * 5",
+      "As": "coin * 6",
+      "P4": "coin * 10",
+      "P3": "coin * 14",
+      "P2": "coin * 20",
+      "P1": "coin * 50"
+    },
+    "line6": {
+      "Dez": "coin * 5",
+      "J": "coin * 6",
+      "Q": "coin * 8",
+      "K": "coin * 10",
+      "As": "coin * 12",
+      "P4": "coin * 20",
+      "P3": "coin * 28",
+      "P2": "coin * 40",
+      "P1": "coin * 100"
+    }
+  }
+}

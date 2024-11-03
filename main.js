@@ -55,7 +55,6 @@ class Scroll_Column {
     this.set_scrolled = $.extend({}, ts);
 
     if (diff > scroll_animation_time) {
-      console.log("CAnceling this sht");
       clearTimeout(this.time_interval);
     } else {
       var id = setTimeout(this.scroll, 1000);
